@@ -79,6 +79,3 @@ function bm_change_url(){
         return $html;
     }
 }
-
-?>
-
