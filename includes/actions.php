@@ -9,7 +9,6 @@ if (! defined ( 'ABSPATH' ))
  * Content content
  */
 function bm_content_overlay() {
-
 	//if ( myc_is_chatbot_overlay_enabled() ) {
 		ob_start();
 		bm_get_template_part( 'chatbot', 'overlay', true, array(

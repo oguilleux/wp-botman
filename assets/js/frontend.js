@@ -10,20 +10,46 @@ jQuery(document).ready(function() {
             event.preventDefault();
             jQuery("#bm-conversation-area .bm-conversation-request").removeClass("bm-is-active");
             var text = jQuery("input#bm-text").val();
+            text=jQuery.trim(text);
+            if(text.length==0){
+                var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \"><p>Plaease do not enter a blank information.</p></div>";
+                innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.logo_url+" /></div>";
+                jQuery("#bm-conversation-area").append(innerHTML);
+                return;
+            }
+            if(text=='clear'){
+                $("#bm-conversation-area").empty();
+                jQuery("input#bm-text").val("");
+                return;
+            }
             var date = new Date();
             var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-request\"><div class=\"bm-conversation-bubble bm-conversation-request bm-is-active\">" + text + "</div>";
-            if (bm_script_vars.show_time) {
-                innerHTML += "<div class=\"bm-datetime\">" + date.toLocaleTimeString() + "</div>";
-            }
             innerHTML += "</div>";
-            if (bm_script_vars.show_loading) {
-                innerHTML += "<div class=\"bm-loading\"><i class=\"bm-icon-loading-dot\" /><i class=\"bm-icon-loading-dot\" /><i class=\"bm-icon-loading-dot\" /></div>";
-            }
             jQuery("#bm-conversation-area").append(innerHTML);
             jQuery("input#bm-text").val("");
             jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
-            textQuery(text);
 
+            //document.wpbotman_form.id_user.value=userid();
+            //textQuery(text);
+
+
+            var data={
+                url:bm_script_vars.base_url,
+                action:'bm_send',
+                driver:'web',
+                userId:userid(),
+                message:text
+            };
+
+            $.post(bm_script_vars.ajaxurl,data,function (response) {
+                // botsaid=response.replace(/\s/g,'');
+                 var botsaid = eval("("+response+")");
+                 var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">"+ botsaid.messages[0].text + "</div>";
+                 innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.logo_url+" /></div>";
+                 jQuery("#bm-conversation-area").append(innerHTML);
+                 jQuery("input#bm-text").val("");
+                 jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
+            });
 
         }
 
@@ -58,16 +84,9 @@ function getCookie(name)
         return unescape(arr[2]);
     else
         return null;
-}
+};
 
-
-/**
- * Send Dialogflow query
- *
- * @param text
- * @returns
- */
-function textQuery(text) {
+function userid(){
     if(document.cookie.indexOf('userid=')>0){
         //alert(1);
         var userid = getCookie("userid");
@@ -86,39 +105,7 @@ function textQuery(text) {
         document.cookie="userid="+userid;
     }
 
-    jQuery.ajax({
-        type:"GET",
-        url:bm_script_vars.base_url,
-		//url:"https://e2bot.localhost.com/wpbot",
-        data:{
-            driver: "web",
-            userId:userid ,
-            message: text
-        },
-        dataType:"jsonp",
-        jsonp:"callback",
-        jsonpCallback:"success_jsonpCallback",
-        success : function(response) {
-            for(var i=0,len=response.messages.length; i<len; i++) {
-                var date = new Date();
-                var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">" + response.messages[i].text + "</div>";
-                if (bm_script_vars.show_time) {
-                    innerHTML += "<div class=\"bm-datetime\">" + date.toLocaleTimeString() + "</div>";
-                }
-                innerHTML += "</div>";
-                jQuery("#bm-conversation-area").append(innerHTML);
+    return userid;
+};
 
-            }},
-        /*error : function(response) {
-            if (bm_script_vars.show_loading) {
-                jQuery(".bm-loading").empty();
-            }
-            textResponse(bm_script_vars.messages.internal_error);
-            jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
-        }*/
-    });
-
-
-
-}
 

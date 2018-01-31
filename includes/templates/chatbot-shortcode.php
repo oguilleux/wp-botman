@@ -1,11 +1,11 @@
 <div class="bm-container">
-	
-	<?php do_action( 'bm_shortcode_before_conversation_area' ); ?>
-	
 	<div id="bm-conversation-area"></div>
-	<div id="bm-input-area">
-		<input id="bm-text" type="text" placeholder="<?php echo $input_text; ?>">
-
-	</div>
+    <form id="wpbotman_form" name="wpbotman_form" method="POST">
+        <div id="bm-input-area">
+            <input id="bm-text" type="text" name='bm-text' placeholder="<?php echo $input_text; ?>">
+            <input type='hidden' id='pluginbase' name='pluginbase' value='<?php echo WPBOTMAN_PLUGIN_URL;  ?>' />
+            <input type="hidden" name="id_user" value="">
+        </div>
+    </form>
 </div>
 

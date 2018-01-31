@@ -45,8 +45,9 @@ include_once(WPBOTMAN_PLUGIN_INCLUDE_DIR . '/template-functions.php');
 include_once(WPBOTMAN_PLUGIN_INCLUDE_DIR . '/shortcodes.php');
 include_once(WPBOTMAN_PLUGIN_INCLUDE_DIR . '/scripts.php');
 require_once WPBOTMAN_PLUGIN_INCLUDE_DIR . '/admin/admin-pages.php';
+//include_once(WPBOTMAN_PLUGIN_INCLUDE_DIR . '/a.php');
 
-
+require_once(WPBOTMAN_PLUGIN_INCLUDE_DIR . '/agent.php');
 
 
 ?>

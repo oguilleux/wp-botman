@@ -38,7 +38,6 @@ function bm_options_page() {
     </div>
 
 
-
     <?php
 
 
@@ -82,4 +81,4 @@ function bm_change_url(){
 }
 
 ?>
-    </div>
+

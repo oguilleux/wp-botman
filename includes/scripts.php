@@ -18,15 +18,15 @@ function bm_load_scripts() {
 
     $base_url=get_option('bm_url_hid');//Get the input url
 
-        wp_localize_script( 'bm-script', 'bm_script_vars', apply_filters( 'bm_script_vars', array(
+    wp_localize_script( 'bm-script', 'bm_script_vars', apply_filters( 'bm_script_vars', array(
 			'messaging_platform' => apply_filters( 'myc_script_messaging_platform','default' ),
 			'base_url' => $base_url,
 			'messages' => array(
 					'internal_error' => __( 'An internal error occured', 'chatbot' ),
 					'input_unknown' => __( 'I\'m sorry I do not understand.', 'chatbot' )
 			),
-			'show_time' => apply_filters( 'myc_script_show_time', false ),
-			'show_loading' => apply_filters( 'myc_script_show_loading',false),
+            'ajaxurl'=>admin_url('admin-ajax.php'),
+            'logo_url'=>WPBOTMAN_PLUGIN_URL.'assets/fonts/logo.png',
 	) ) );
 
 }
@@ -49,12 +49,14 @@ function bm_register_styles() {
 			color:#323232;
 		}
 		.bm-conversation-request, .bm-conversation-request:before  {
-			background-color: #1f4c73;
+			background-color: #4f5d73;
 			color: #fff;
 		}
 		.bm-content-overlay-header {
-			background-color: #1f4c73;
+			background-color: #4f5d73;
 			color: #fff;
+			border-top-left-radius: 10px;
+	       border-top-right-radius: 10px;
 		}
 		.bm-conversation-bubble {
 			opacity: 0.8;
