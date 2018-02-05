@@ -1,10 +1,8 @@
 
 jQuery(document).ready(function() {
-	//alert(bm_script_vars.base_url);
 	/*
 	 * When the user enters text in the text input text field and then the presses Enter key
 	 */
-    //$('.wpbotmanform').submit(function(e) {
     jQuery("input#bm-text").keypress(function(event) {
         if (event.which == 13) {
             event.preventDefault();
