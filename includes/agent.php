@@ -14,11 +14,31 @@ function bm_send()
 
     /*$host = "e2bot.localhost.com";
     $ip = "192.168.99.100";*/
+    $overlay_settings = (array) get_option( 'bm_general_settings' );
+    $change_url = $overlay_settings['change_url'];
+    $change_ip = $overlay_settings['change_ip'];
+    $change_host = $overlay_settings['change_host'];
+
+    if($change_url&&!$change_ip){
+        $url=$change_url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+    }elseif(!$change_url&&$change_ip&&$change_host){
+            $url=$change_ip;
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, [$change_host]);
+        }elseif(!$change_url&&!$change_ip){
+            $url = "https://192.168.99.100/botman";
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, ['Host: e2bot.localhost.com']);
+        }
+
+    //echo  $change_url;
+
 
     //$url=$_POST['url'];   //the correct url form wp-admin
-    $url = "https://192.168.99.100/botman";
+    /*$url = "https://192.168.99.100/botman";
     curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Host: e2bot.localhost.com']);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Host: e2bot.localhost.com']);*/
     //curl_setopt($curl, CURLOPT_URL, $url);
 
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -29,8 +49,8 @@ function bm_send()
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
 
     $post_data = array(
-        "driver" => $_POST['driver']?$_POST['driver']:'web',
-        "userId" => $_POST['userId'],
+        "driver"  => $_POST['driver']?$_POST['driver']:'web',
+        "userId"  => $_POST['userId'],
         "message" => $_POST['message'],
     );
 

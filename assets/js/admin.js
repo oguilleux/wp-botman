@@ -16,8 +16,22 @@ jQuery(document).ready(function() {
 
     });
 
+    //upbottom?¾å?°Ä?Åªid
+    jQuery('#upbottom').click(function() {
+        //ashu_logo?Ê¸ËÜ°è
+        //targetfield = jQuery.prev('#ashu_logo');
+        tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+        return false;
+    });
+
+    window.send_to_editor = function(html) {
+        imgurl = jQuery('img',html).attr('src');
+        jQuery('#ashu_logo').val(imgurl);
+        tb_remove();
+    }
 
 
-	    
+
+
 });
 

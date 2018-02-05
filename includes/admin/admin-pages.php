@@ -7,75 +7,119 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 function bm_add_options_link() {
 
-	add_options_page( __( 'Botman', 'chatbot' ), __( 'Botman', 'chatbot' ), 'manage_options', 'botman', 'bm_options_page');
+	add_options_page( __( 'Botman', 'wp-botman' ), __( 'Botman', 'wp-botman' ), 'manage_options', 'botman', 'bm_options_page');
 	
 }
 add_action( 'admin_menu', 'bm_add_options_link');
 
 function bm_options_page() {
-    $option_name = 'bm_url_hid' ;
-    if(!get_option($option_name)){
-        $newvalue="https://e2bot.localhost.com/wpbot";
-        update_option($option_name,$newvalue);
-    }
-
-    bm_change_url();
-
 ?>
+
     <div class="setting_error" id="setting-error-settings_updated"></div>
     <div class="wrap">
-        <h1><?php _e( 'Botman Settings', 'chatbot' ); ?></h1>
-        <form name="change_url_form" class="change_url_form" method="post">
-            <tr>
-                <th scope="row">Modify the URL</th>
-                <td><input class="regular-text" type="text" name="bm_url_input" value="<?php echo get_option('bm_url_hid'); ?>"/></td>
-            </tr>
-            <p class="submit">
-                <input type="submit" name="submit" id="submit" class="button button-primary" value="Save changes" action="suburl">
-            </p>
-            <input type="hidden" name="bm_url_hid" value="">
+        <h1><?php _e( 'Botman Settings', 'wp-botman' ); ?></h1>
+        <h2 class="nav-tab-wrapper">
+            <?php
+            $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'bm_general_settings';
+            $tabs = array (
+                /*'bm_general_settings'				=> __( 'General', 'botman' ),*/
+            );
+
+            $tabs = apply_filters( 'bm_settings_tabs', $tabs );
+
+            foreach ( $tabs as $tab_key => $tab_caption ) {
+                $active = $current_tab == $tab_key ? 'nav-tab-active' : '';
+                echo '<a class="nav-tab ' . $active . '" href="options-general.php?page=botman&tab=' . $tab_key . '">' . $tab_caption . '</a>';
+            }
+            ?>
+        </h2>
+
+        <form method="post" name="<?php echo $current_tab; ?>" action="options.php">
+            <?php
+            wp_nonce_field( 'update-options' );
+            settings_fields( $current_tab );
+            do_settings_sections( 'botman&tab=' . $current_tab );
+            submit_button( null, 'primary', 'submit', true, null );
+            ?>
         </form>
     </div>
 
+<?php
+   /* if(isset($_POST['classic_save'])) {
+        $options = getOptions();
+        $options['ashu_logo'] = stripslashes($_POST['ashu_logo']);
+        update_option('classic_options', $options);
+    } else {
+        getOptions();
+    }*/
+    /**/?><!--
+    <label>
+        <input type="text" size="80"  name="ashu_logo" id="ashu_logo" value="<?php /*echo($options['ashu_logo']); */?>"/>
+        <input type="button" name="upload_button" value="load" id="upbottom"/>
+    </label>-->
+
 
     <?php
-
+/*    //²Ã?¾å??ÊÒÅªjs(wp¼«?)
+    wp_enqueue_script('thickbox');
+    //²Ã?css(wp¼«?)
+    wp_enqueue_style('thickbox');*/
 
 }
-   /*
-    * ´ÉÍý³¦ÌÌ½¤²þurl¸ùÇ½
-    */
-function bm_change_url(){
-    //echo  $_POST["bm_url_hid"];
-    $option_name = 'bm_url_hid' ;
-    $newvalue=$_POST["bm_url_hid"];
-   /* if($newvalue){
-        if(preg_match('/^http[s]?:\/\/'.
-            '(([0-9]{1,3}\.){3}[0-9]{1,3}'. // IP·Á¼°ÅªURL- 199.194.52.184
-            '|'. // °ô?IPÏÂDOMAIN¡Ê°èÌ¾¡Ë
-            '([0-9a-z_!~*\'()-]+\.)*'. // °èÌ¾- www.
-            '([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.'. // Æó?°èÌ¾
-            '[a-z]{2,6})'.  // first level domain- .com or .museum
-            '(:[0-9]{1,4})?'.  // Ã¼¸ý- :80
-            '((\/\?)|'.  // a slash isn't required if there is no file name
-            '(\/[0-9a-zA-Z_!~\'\(\)\[\]\.;\?:@&=\+\$,%#-\/^\*\|]*)?)$/',$newvalue)){
-            if(get_option($option_name)==$newvalue){
-                $html="<div class=\"setting_error\" id=\"setting-error-settings_updated\"><strong>This URL is the same as the previous modification.</strong></div>";
-                return $html;
-            }
-            update_option($option_name, $newvalue);
-            $html="<div class=\"setting_error\" id=\"setting-error-settings_updated\"><strong>The URl have been modified to ".get_option($option_name).".</strong></div>";
-            return $html;
-        }else{
-            $html="<div class=\"setting_error\" id=\"setting-error-settings_updated\"><strong>Your url is not correct!Please enter a correct url.</strong></div>";
-            return $html;
-        }
 
-    }*/
-    if($newvalue){
-        $newvalue=$_POST["bm_url_hid"];
-        update_option($option_name, $newvalue);
-        $html="<div class=\"setting_error\" id=\"setting-error-settings_updated\"><strong>The URl have been modified to ".get_option($option_name).".</strong></div>";
-        return $html;
+/*function getOptions() {
+    $options = get_option('classic_options');
+    if (!is_array($options)) {
+        $options['ashu_logo'] = '';
+        update_option('classic_options', $options);
     }
+    return $options;
+}*/
+
+
+/**
+ * General settings section
+ */
+function bm_section_general_desc() {
+    ?>
+    <p class="bm-settings-section"><?php _e( 'Dialogflow integration settings and chatbot conversation styles.', 'wp-botman'); ?></p>
+    <?php
 }
+
+/**
+* Field input setting
+*/
+function bm_field_input( $args ) {
+    $settings = (array) get_option( $args['option_name' ] );
+    $class = isset( $args['class'] ) ? $args['class'] : 'regular-text';
+    $type = isset( $args['type'] ) ? $args['type'] : 'text';
+    $min = isset( $args['min'] ) && is_numeric( $args['min'] ) ? intval( $args['min'] ) : null;
+    $max = isset( $args['max'] ) && is_numeric( $args['max'] ) ? intval( $args['max'] ) : null;
+    $step = isset( $args['step'] ) && is_numeric( $args['step'] ) ? floatval( $args['step'] ) : null;
+    $readonly = isset( $args['readonly'] ) && $args['readonly'] ? ' readonly' : '';
+    $placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
+    $required = isset( $args['required'] ) && $args['required'] === true ? 'required' : '';
+    ?>
+    <input class="<?php echo $class; ?>" type="<?php echo $type; ?>" name="<?php echo $args['option_name']; ?>[<?php echo $args['setting_id']; ?>]"
+           value="<?php echo esc_attr( $settings[$args['setting_id']] ); ?>" <?php if ( $min !== null ) { echo ' min="' . $min . '"'; } ?>
+        <?php if ( $max !== null) { echo ' max="' . $max . '"'; } echo $readonly; ?>
+        <?php if ( $step !== null ) { echo ' step="' . $step . '"'; } ?>
+           placeholder="<?php echo $placeholder; ?>" <?php echo $required; ?> />
+    <?php
+    if ( isset( $args['label'] ) ) { ?>
+        <label><?php echo $args['label']; ?></label>
+    <?php }
+}
+
+/*
+ * Field label
+ */
+function bm_field_label($args){
+    $settings = (array) get_option( $args['option_name' ] );
+    ?>
+    <label><?php echo $args['label']; ?></label>
+    <?php
+}
+
+
+

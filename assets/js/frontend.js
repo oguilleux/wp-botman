@@ -34,7 +34,6 @@ jQuery(document).ready(function() {
 
 
             var data={
-                url:bm_script_vars.base_url,
                 action:'bm_send',
                 driver:'web',
                 userId:userid(),
@@ -42,13 +41,19 @@ jQuery(document).ready(function() {
             };
 
             $.post(bm_script_vars.ajaxurl,data,function (response) {
-                // botsaid=response.replace(/\s/g,'');
-                 var botsaid = eval("("+response+")");
-                 var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">"+ botsaid.messages[0].text + "</div>";
-                 innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.logo_url+" /></div>";
-                 jQuery("#bm-conversation-area").append(innerHTML);
-                 jQuery("input#bm-text").val("");
-                 jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
+                if(response){
+                    // botsaid=response.replace(/\s/g,'');
+                    var botsaid = eval("("+response+")");
+                    if(botsaid.messages[0].text){
+                        var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">"+ botsaid.messages[0].text + "</div>";
+                    }else{
+                        var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">The Response is null.Please set the right url.</div>";
+                    }
+                    innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.logo_url+" /></div>";
+                    jQuery("#bm-conversation-area").append(innerHTML);
+                    jQuery("input#bm-text").val("");
+                    jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
+                }
             });
 
         }

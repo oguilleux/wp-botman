@@ -10,11 +10,10 @@ if (! defined ( 'ABSPATH' ))
  */
 function bm_content_overlay() {
 	//if ( myc_is_chatbot_overlay_enabled() ) {
+    $overlay_settings = (array) get_option( 'bm_general_settings' );
 		ob_start();
 		bm_get_template_part( 'chatbot', 'overlay', true, array(
-				'overlay_header_text' 		=> "Botman",
-				'overlay_powered_by_text' 	=> 'Powered by <a href="#">e2info</a>',
-				//'toggle_class'				=> false == true ? 'myc-toggle-open' :  'myc-toggle-closed'
+				'overlay_header_text' 		=> $overlay_settings['header_text'],
 		) );
 		$html = ob_get_contents();
 		ob_end_clean();

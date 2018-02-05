@@ -16,11 +16,9 @@ function bm_load_scripts() {
 	wp_register_script( 'bm-script', $js_dir . 'frontend' . $suffix . '.js', array( 'jquery' ), 0.5 );
 	wp_enqueue_script( 'bm-script' );
 
-    $base_url=get_option('bm_url_hid');//Get the input url
 
     wp_localize_script( 'bm-script', 'bm_script_vars', apply_filters( 'bm_script_vars', array(
 			'messaging_platform' => apply_filters( 'myc_script_messaging_platform','default' ),
-			'base_url' => $base_url,
 			'messages' => array(
 					'internal_error' => __( 'An internal error occured', 'chatbot' ),
 					'input_unknown' => __( 'I\'m sorry I do not understand.', 'chatbot' )

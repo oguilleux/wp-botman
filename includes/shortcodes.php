@@ -16,10 +16,10 @@ function bm_chatbot_shortcode( $atts = array(), $content = null, $tag ) {
 			'debug' => false
 	), $atts ) );
 
-	
+    $overlay_settings = (array) get_option( 'bm_general_settings' );
 	ob_start();
 	bm_get_template_part( 'chatbot', 'shortcode', true, array(
-			'input_text'				=> 'Ask something...'
+			'input_text'				=> $overlay_settings['input_text'],
 	) );
 	$html = ob_get_contents();
 	ob_end_clean();
