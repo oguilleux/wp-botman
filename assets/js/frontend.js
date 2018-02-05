@@ -29,10 +29,6 @@ jQuery(document).ready(function() {
             jQuery("input#bm-text").val("");
             jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
 
-            //document.wpbotman_form.id_user.value=userid();
-            //textQuery(text);
-
-
             var data={
                 action:'bm_send',
                 driver:'web',

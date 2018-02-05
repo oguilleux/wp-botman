@@ -32,15 +32,6 @@ function bm_send()
             curl_setopt($curl, CURLOPT_HTTPHEADER, ['Host: e2bot.localhost.com']);
         }
 
-    //echo  $change_url;
-
-
-    //$url=$_POST['url'];   //the correct url form wp-admin
-    /*$url = "https://192.168.99.100/botman";
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_HTTPHEADER, ['Host: e2bot.localhost.com']);*/
-    //curl_setopt($curl, CURLOPT_URL, $url);
-
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HEADER, 0);//direct to brower
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 0);//direct to brower
