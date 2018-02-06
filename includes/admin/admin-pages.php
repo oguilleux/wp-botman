@@ -1,9 +1,6 @@
 <?php
-
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 
 function bm_add_options_link() {
 
@@ -13,7 +10,6 @@ function bm_add_options_link() {
 add_action( 'admin_menu', 'bm_add_options_link');
 
 function bm_options_page() {
-    $options = getOptions();
 ?>
 
     <div class="setting_error" id="setting-error-settings_updated"></div>
@@ -40,60 +36,21 @@ function bm_options_page() {
         <form method="post" name="<?php echo $current_tab; ?>" class="<?php echo $current_tab; ?>" action="options.php">
             <?php
             do_settings_sections( 'botman&tab=' . $current_tab );
-            //²Ã?¾å??ÊÒÅªjs(wp¼«?)
+
+            //load the load image jquery from wordpress
             wp_enqueue_script('thickbox');
-            //²Ã?css(wp¼«?)
+            //load the load image CSS from wordpress
             wp_enqueue_style('thickbox');
-            ?>
 
-            <!--<label>
-                <input type="text" size="80"  name="ashu_logo" id="ashu_logo" value="<?php /*echo($options['ashu_logo']); */?>"/>
-                <input type="button" name="upload_button" value="load" id="upbottom"/>
-                <input type="hidden" id="ashu_logo_hid" name="ashu_logo_hid" value="55" />
-            </label>-->
-
-            <?php
-
-            //?È¡¿ô?½Ð°¨Ð¤?é¶°è¡¤ÍÑÍè??É½?Íè¸»
             wp_nonce_field( 'update-options' );
             settings_fields( $current_tab );
             submit_button( null, 'primary', 'submit', true, null );
-
-            /*if(isset($_POST['submit'])) {
-                $options = getOptions();
-                $options['ashu_logo'] = stripslashes($_POST['ashu_logo']);
-                update_option('classic_options', $options);
-            } else {
-                getOptions();
-            }*/
-
-            /*if($_POST['ashu_logo_hid']){
-                $options = getOptions();
-                $options['ashu_logo'] = stripslashes($_POST['ashu_logo_hid']);
-                update_option('classic_options', $options);
-            }else {
-                getOptions();
-            }*/
-
-
             ?>
         </form>
     </div>
 
     <?php
-
-
 }
-
-function getOptions() {
-    $options = get_option('classic_options');
-    if (!is_array($options)) {
-        $options['ashu_logo'] = '333';
-        update_option('classic_options', $options);
-    }
-    return $options;
-}
-
 
 /**
  * General settings section
@@ -151,7 +108,7 @@ function bm_field_logo($args){
     ?>
     <label>
         <input id= "<?php echo $logoid; ?>" type="<?php echo $type; ?>" size="80"  name="<?php echo $args['option_name']; ?>[<?php echo $args['setting_id']; ?>]" class="<?php echo $class; ?>" value="<?php echo esc_attr( $settings[$args['setting_id']] ); ?>"/>
-        <input type="button" name="upload_button" value="load" id="<?php echo $butid; ?>"/>
+        <input type="button" name="upload_button" value="<?php _e('Select File','wp-botman') ?>" id="<?php echo $butid; ?>"/>
     </label>
     <?php
 }

@@ -13,7 +13,7 @@ function bm_register_settings() {
 
 	$setting_fields = array(
         'header_text' => array(
-            'title' 	=> __( 'Header Text', 'wp-botman' ),
+            'title' 	=> __( 'Botman Title', 'wp-botman' ),
             'callback' 	=> 'bm_field_input',
             'page' 		=> 'botman&tab=bm_general_settings',
             'section' 	=> 'bm_section_general',
@@ -70,24 +70,24 @@ function bm_register_settings() {
             'args' => array(
                 'option_name' 	=> 'bm_general_settings',
                 'setting_id' 	=> 'change_ip',
-                'label' 		=> __( 'Enter the IP.', 'wp-botman' ),
-                'placeholder'	=> __( 'Enter the IP...', 'wp-botman' )
+                'label' 		=> __( 'Enter the IP you want yo change.', 'wp-botman' ),
+                'placeholder'	=> __(  'Enter the IP you want yo change...', 'wp-botman' )
             )
         ),
         'change_host' => array(
-            'title' 	=> __( 'Change Host', 'wp-botman' ),
+            'title' 	=> __(  'Change Host', 'wp-botman' ),
             'callback' 	=> 'bm_field_input',
             'page' 		=> 'botman&tab=bm_general_settings',
             'section' 	=> 'bm_section_general',
             'args' => array(
                 'option_name' 	=> 'bm_general_settings',
                 'setting_id' 	=> 'change_host',
-                'label' 		=> __( 'Enter the Host.', 'wp-botman' ),
-                'placeholder'	=> __( 'Enter the Host...', 'wp-botman' )
+                'label' 		=> __(  'Enter the Host you want yo change.', 'wp-botman' ),
+                'placeholder'	=> __(  'Enter the Host you want yo change...', 'wp-botman' )
             )
         ),
         'change_botlogo' => array(
-            'title' 	=> __( 'Change Botman src', 'wp-botman' ),
+            'title' 	=> __( 'Change Botman Head Image', 'wp-botman' ),
             'callback' 	=> 'bm_field_logo',
             'page' 		=> 'botman&tab=bm_general_settings',
             'section'     	=> 'bm_section_general',
@@ -96,11 +96,11 @@ function bm_register_settings() {
                 'setting_id' 	    => 'change_botlogo',
                 'logoid'          =>'botman_logo',
                 'butid'           =>'botman-upbottom',
-                'label'            =>__( 'Change the url or change the IP and Host.', 'wp-botman' ),
+                'label'            =>__( 'Change Botman Head Image.', 'wp-botman' ),
             )
         ),
         'change_userlogo' => array(
-            'title' 	=> __( 'Change User src', 'wp-botman' ),
+            'title' 	=> __( 'Change User Head Image', 'wp-botman' ),
             'callback' 	=> 'bm_field_logo',
             'page' 		=> 'botman&tab=bm_general_settings',
             'section'     	=> 'bm_section_general',
@@ -109,7 +109,7 @@ function bm_register_settings() {
                 'setting_id' 	    => 'change_userlogo',
                 'logoid'          =>'user_logo',
                 'butid'           =>'user-upbottom',
-                'label'            =>__( 'Change the url or change the IP and Host.', 'wp-botman' ),
+                'label'            =>__( 'Change User Head Image.', 'wp-botman' ),
             )
         ),
 	);
@@ -128,13 +128,13 @@ function bm_default_settings() {
 	$general_settings = (array) get_option( 'bm_general_settings' );
 
 	$general_settings = array_merge( array(
-			'input_text'				  => __( 'Ask something...', 'botman' ),
-            'header_text'				  => __( 'Botman', 'botman' ),
-            'change_url'                => __( '', 'botman' ),
-            'change_ip'                 => __( 'https://192.168.99.100/botman', 'botman' ),
-            'change_host'               => __( 'Host: e2bot.localhost.com', 'botman' ),
-            'change_botlogo'            => __('wp-content/plugins/wp-botman/assets/fonts/logo.png'),
-            'change_userlogo'          =>__( '', 'botman' ),
+			'input_text'				  => __( 'Ask something...', 'wp-botman' ),
+            'header_text'				  => __( 'Botman', 'wp-botman' ),
+            'change_url'                => __( '', 'wp-botman' ),
+            'change_ip'                 => __( 'https://192.168.99.100/botman', 'wp-botman' ),
+            'change_host'               => __( 'Host: e2bot.localhost.com', 'wp-botman' ),
+            'change_botlogo'           => __('wp-content/plugins/wp-botman/assets/fonts/logo.png'),
+            'change_userlogo'          =>__( '', 'wp-botman' ),
 	), $general_settings );
 
 	update_option( 'bm_general_settings', $general_settings );

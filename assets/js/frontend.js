@@ -48,17 +48,21 @@ jQuery(document).ready(function() {
             $.post(bm_script_vars.ajaxurl,data,function (response) {
                 if(response){
                     // botsaid=response.replace(/\s/g,'');
-                    var botsaid = eval("("+response+")");
-                    if(botsaid.messages[0].text){
-                        var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">"+ botsaid.messages[0].text + "</div>";
+                    if(response=="nourl"){
+                        var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">No url is set.</div>";
                     }else{
-                        var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">The Response is null.Please set the right url.</div>";
+                        var botsaid = eval("("+response+")");
+                        if(botsaid.messages[0].text){
+                            var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">"+ botsaid.messages[0].text + "</div>";
+                        }else{
+                            var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">The Response is null.Please set the right url.</div>";
+                        }
                     }
+
                     if(bm_script_vars.botlogo){
                         innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.botlogo+" /></div>";
                     }
                     jQuery("#bm-conversation-area").append(innerHTML);
-                    jQuery("input#bm-text").val("");
                     jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
                 }
             });

@@ -29,11 +29,17 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
+
 define("WPBOTMAN_PLUGIN_DIR", __file__);
 define("WPBOTMAN_PLUGIN_BASE", dirname(__file__));
 define("WPBOTMAN_PLUGIN_URL", plugin_dir_url(WPBOTMAN_PLUGIN_DIR));
 
-
+load_plugin_textdomain(
+    "wp-botman",
+    false,
+    dirname( plugin_basename( __FILE__ ) ).'/languages'
+);
 
 define("WPBOTMAN_PLUGIN_JS_DIR", WPBOTMAN_PLUGIN_URL."assets/js/");
 define("WPBOTMAN_PLUGIN_CSS_DIR", WPBOTMAN_PLUGIN_URL . "assets/css/");

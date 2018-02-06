@@ -27,9 +27,8 @@ function bm_send()
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_HTTPHEADER, [$change_host]);
         }elseif(!$change_url&&!$change_ip){
-            $url = "https://192.168.99.100/botman";
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, ['Host: e2bot.localhost.com']);
+            echo "nourl";
+            die();
         }
 
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

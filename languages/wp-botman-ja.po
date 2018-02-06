@@ -1,0 +1,146 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-botman\n"
+"POT-Creation-Date: 2018-02-06 12:48+0800\n"
+"PO-Revision-Date: 2018-02-06 13:26+0800\n"
+"Last-Translator: Haining <haining@e2info.com>\n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../includes/admin/admin-pages.php:7
+#: ../includes/admin/register-settings.php:132
+msgid "Botman"
+msgstr ""
+
+#: ../includes/admin/admin-pages.php:17
+msgid "Botman Settings"
+msgstr "Botman設定"
+
+#: ../includes/admin/admin-pages.php:60
+msgid "Dialogflow integration settings and chatbot conversation styles."
+msgstr "会話の集積設定とチャットボットの会話スタイル"
+
+#: ../includes/admin/admin-pages.php:111
+msgid "Select File"
+msgstr "ファイルを選択してください。"
+
+#: ../includes/admin/register-settings.php:16
+msgid "Botman Title"
+msgstr "Botmanタイトル"
+
+#: ../includes/admin/register-settings.php:23
+msgid "Enter header text."
+msgstr "ヘッダー情報を入力してください。"
+
+#: ../includes/admin/register-settings.php:24
+msgid "Enter header text..."
+msgstr "ヘッダー情報を入力してください..."
+
+#: ../includes/admin/register-settings.php:28
+msgid "Input Text"
+msgstr "提示メッセージ"
+
+#: ../includes/admin/register-settings.php:35
+msgid "Enter input text."
+msgstr "提示メッセージを入力してください。"
+
+#: ../includes/admin/register-settings.php:36
+msgid "Enter input text..."
+msgstr "提示メッセージを入力してください..."
+
+#: ../includes/admin/register-settings.php:48
+msgid "Change the url or change the IP and Host."
+msgstr "url或いはIPとHostを変更してください。"
+
+#: ../includes/admin/register-settings.php:52
+msgid "Change Url"
+msgstr "urlを変更する。"
+
+#: ../includes/admin/register-settings.php:59
+msgid "Enter the url you want to change."
+msgstr "変更したいurlを入力してください。"
+
+#: ../includes/admin/register-settings.php:60
+msgid "Enter the url you want to change..."
+msgstr "変更したいurlを入力してください。..."
+
+#: ../includes/admin/register-settings.php:66
+msgid "Change IP"
+msgstr "IPを変更する"
+
+#: ../includes/admin/register-settings.php:73
+msgid "Enter the IP you want yo change."
+msgstr "変更したいIPを入力してください。"
+
+#: ../includes/admin/register-settings.php:74
+msgid "Enter the IP you want yo change..."
+msgstr "変更したいIPを入力してください..."
+
+#: ../includes/admin/register-settings.php:78
+msgid "Change Host"
+msgstr "Hostを変更する"
+
+#: ../includes/admin/register-settings.php:85
+msgid "Enter the Host you want yo change."
+msgstr "変更したいHostを入力してください。"
+
+#: ../includes/admin/register-settings.php:86
+msgid "Enter the Host you want yo change..."
+msgstr "変更したいHostを入力してください..."
+
+#: ../includes/admin/register-settings.php:90
+msgid "Change Botman Head Image"
+msgstr "Botman画像を変更する"
+
+#: ../includes/admin/register-settings.php:99
+msgid "Change Botman Head Image."
+msgstr "Botman画像を変更してください。"
+
+#: ../includes/admin/register-settings.php:103
+msgid "Change User Head Image"
+msgstr "プロフィール画像を変更する"
+
+#: ../includes/admin/register-settings.php:112
+msgid "Change User Head Image."
+msgstr "プロフィール画像を変更してください。"
+
+#: ../includes/admin/register-settings.php:131
+msgid "Ask something..."
+msgstr "何かお伺いしましょうか.."
+
+#: ../includes/admin/register-settings.php:134
+msgid "https://192.168.99.100/botman"
+msgstr ""
+
+#: ../includes/admin/register-settings.php:135
+msgid "Host: e2bot.localhost.com"
+msgstr ""
+
+#: ../includes/admin/register-settings.php:136
+msgid "wp-content/plugins/wp-botman/assets/fonts/logo.png"
+msgstr ""
+
+#: ../includes/scripts.php:27
+msgid "An internal error occured"
+msgstr "エラーがあります。"
+
+#: ../includes/scripts.php:28
+msgid "I'm sorry I do not understand."
+msgstr "すみません。意味が分かりません。"
+
+#: ../includes/templates/chatbot-overlay.php:4
+msgid "Open"
+msgstr ""
+
+#: ../includes/templates/chatbot-overlay.php:5
+msgid "Close"
+msgstr ""
