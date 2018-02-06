@@ -10,18 +10,29 @@ jQuery(document).ready(function() {
             var text = jQuery("input#bm-text").val();
             text=jQuery.trim(text);
             if(text.length==0){
-                var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \"><p>Plaease do not enter a blank information.</p></div>";
-                innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.logo_url+" /></div>";
+                var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-request\">";
+                if(bm_script_vars.userlogo){
+                    innerHTML +="<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.userlogo+" />";
+                }
+                innerHTML +="<div class=\"bm-conversation-bubble bm-conversation-request bm-is-active\"><p>Plaease do not enter a blank information.</p></div>";
+                innerHTML += "</div>";
                 jQuery("#bm-conversation-area").append(innerHTML);
+                jQuery("input#bm-text").val("");
+                jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
                 return;
             }
+
             if(text=='clear'){
                 $("#bm-conversation-area").empty();
                 jQuery("input#bm-text").val("");
                 return;
             }
-            var date = new Date();
-            var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-request\"><div class=\"bm-conversation-bubble bm-conversation-request bm-is-active\">" + text + "</div>";
+
+            var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-request\">";
+            if(bm_script_vars.userlogo){
+                innerHTML +="<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.userlogo+" />";
+            }
+            innerHTML += "<div class=\"bm-conversation-bubble bm-conversation-request bm-is-active\">" + text + "</div>";
             innerHTML += "</div>";
             jQuery("#bm-conversation-area").append(innerHTML);
             jQuery("input#bm-text").val("");
@@ -43,7 +54,9 @@ jQuery(document).ready(function() {
                     }else{
                         var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">The Response is null.Please set the right url.</div>";
                     }
-                    innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.logo_url+" /></div>";
+                    if(bm_script_vars.botlogo){
+                        innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.botlogo+" /></div>";
+                    }
                     jQuery("#bm-conversation-area").append(innerHTML);
                     jQuery("input#bm-text").val("");
                     jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));

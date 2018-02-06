@@ -13,6 +13,7 @@ function bm_add_options_link() {
 add_action( 'admin_menu', 'bm_add_options_link');
 
 function bm_options_page() {
+    $options = getOptions();
 ?>
 
     <div class="setting_error" id="setting-error-settings_updated"></div>
@@ -20,9 +21,10 @@ function bm_options_page() {
         <h1><?php _e( 'Botman Settings', 'wp-botman' ); ?></h1>
         <h2 class="nav-tab-wrapper">
             <?php
-            $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'bm_general_settings';
-            $tabs = array (
-                /*'bm_general_settings'				=> __( 'General', 'botman' ),*/
+            $current_tab = 'bm_general_settings';
+            //$current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'bm_general_settings';
+            /*$tabs = array (
+               // 'bm_general_settings'				=> __( 'General', 'botman' ),
             );
 
             $tabs = apply_filters( 'bm_settings_tabs', $tabs );
@@ -31,50 +33,66 @@ function bm_options_page() {
                 $active = $current_tab == $tab_key ? 'nav-tab-active' : '';
                 echo '<a class="nav-tab ' . $active . '" href="options-general.php?page=botman&tab=' . $tab_key . '">' . $tab_caption . '</a>';
             }
+            */
             ?>
         </h2>
 
-        <form method="post" name="<?php echo $current_tab; ?>" action="options.php">
+        <form method="post" name="<?php echo $current_tab; ?>" class="<?php echo $current_tab; ?>" action="options.php">
             <?php
+            do_settings_sections( 'botman&tab=' . $current_tab );
+            //加?上??片的js(wp自?)
+            wp_enqueue_script('thickbox');
+            //加?css(wp自?)
+            wp_enqueue_style('thickbox');
+            ?>
+
+            <!--<label>
+                <input type="text" size="80"  name="ashu_logo" id="ashu_logo" value="<?php /*echo($options['ashu_logo']); */?>"/>
+                <input type="button" name="upload_button" value="load" id="upbottom"/>
+                <input type="hidden" id="ashu_logo_hid" name="ashu_logo_hid" value="55" />
+            </label>-->
+
+            <?php
+
+            //?函数?出两个?藏域，用来??表?来源
             wp_nonce_field( 'update-options' );
             settings_fields( $current_tab );
-            do_settings_sections( 'botman&tab=' . $current_tab );
             submit_button( null, 'primary', 'submit', true, null );
+
+            /*if(isset($_POST['submit'])) {
+                $options = getOptions();
+                $options['ashu_logo'] = stripslashes($_POST['ashu_logo']);
+                update_option('classic_options', $options);
+            } else {
+                getOptions();
+            }*/
+
+            /*if($_POST['ashu_logo_hid']){
+                $options = getOptions();
+                $options['ashu_logo'] = stripslashes($_POST['ashu_logo_hid']);
+                update_option('classic_options', $options);
+            }else {
+                getOptions();
+            }*/
+
+
             ?>
         </form>
     </div>
 
-<?php
-   /* if(isset($_POST['classic_save'])) {
-        $options = getOptions();
-        $options['ashu_logo'] = stripslashes($_POST['ashu_logo']);
-        update_option('classic_options', $options);
-    } else {
-        getOptions();
-    }*/
-    /**/?><!--
-    <label>
-        <input type="text" size="80"  name="ashu_logo" id="ashu_logo" value="<?php /*echo($options['ashu_logo']); */?>"/>
-        <input type="button" name="upload_button" value="load" id="upbottom"/>
-    </label>-->
-
-
     <?php
-/*    //加?上??片的js(wp自?)
-    wp_enqueue_script('thickbox');
-    //加?css(wp自?)
-    wp_enqueue_style('thickbox');*/
+
 
 }
 
-/*function getOptions() {
+function getOptions() {
     $options = get_option('classic_options');
     if (!is_array($options)) {
-        $options['ashu_logo'] = '';
+        $options['ashu_logo'] = '333';
         update_option('classic_options', $options);
     }
     return $options;
-}*/
+}
 
 
 /**
@@ -118,6 +136,23 @@ function bm_field_label($args){
     $settings = (array) get_option( $args['option_name' ] );
     ?>
     <label><?php echo $args['label']; ?></label>
+    <?php
+}
+
+/*
+ * Field logo
+ */
+function bm_field_logo($args){
+    $settings = (array) get_option( $args['option_name' ] );
+    $class = isset( $args['class'] ) ? $args['class'] : 'regular-text';
+    $type = isset( $args['type'] ) ? $args['type'] : 'text';
+    $butid=isset($args['butid'])?$args['butid']:'';
+    $logoid=isset($args['logoid'])?$args['logoid']:'';
+    ?>
+    <label>
+        <input id= "<?php echo $logoid; ?>" type="<?php echo $type; ?>" size="80"  name="<?php echo $args['option_name']; ?>[<?php echo $args['setting_id']; ?>]" class="<?php echo $class; ?>" value="<?php echo esc_attr( $settings[$args['setting_id']] ); ?>"/>
+        <input type="button" name="upload_button" value="load" id="<?php echo $butid; ?>"/>
+    </label>
     <?php
 }
 

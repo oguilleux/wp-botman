@@ -86,6 +86,32 @@ function bm_register_settings() {
                 'placeholder'	=> __( 'Enter the Host...', 'wp-botman' )
             )
         ),
+        'change_botlogo' => array(
+            'title' 	=> __( 'Change Botman src', 'wp-botman' ),
+            'callback' 	=> 'bm_field_logo',
+            'page' 		=> 'botman&tab=bm_general_settings',
+            'section'     	=> 'bm_section_general',
+            'args' => array(
+                'option_name' 	=> 'bm_general_settings',
+                'setting_id' 	    => 'change_botlogo',
+                'logoid'          =>'botman_logo',
+                'butid'           =>'botman-upbottom',
+                'label'            =>__( 'Change the url or change the IP and Host.', 'wp-botman' ),
+            )
+        ),
+        'change_userlogo' => array(
+            'title' 	=> __( 'Change User src', 'wp-botman' ),
+            'callback' 	=> 'bm_field_logo',
+            'page' 		=> 'botman&tab=bm_general_settings',
+            'section'     	=> 'bm_section_general',
+            'args' => array(
+                'option_name' 	=> 'bm_general_settings',
+                'setting_id' 	    => 'change_userlogo',
+                'logoid'          =>'user_logo',
+                'butid'           =>'user-upbottom',
+                'label'            =>__( 'Change the url or change the IP and Host.', 'wp-botman' ),
+            )
+        ),
 	);
 
 	foreach ( $setting_fields as $setting_id => $setting_data ) {
@@ -107,7 +133,8 @@ function bm_default_settings() {
             'change_url'                => __( '', 'botman' ),
             'change_ip'                 => __( 'https://192.168.99.100/botman', 'botman' ),
             'change_host'               => __( 'Host: e2bot.localhost.com', 'botman' ),
-            'botpic_url'                => __('wp-content/plugins/wp-botman/assets/fonts/logo.png'),
+            'change_botlogo'            => __('wp-content/plugins/wp-botman/assets/fonts/logo.png'),
+            'change_userlogo'          =>__( '', 'botman' ),
 	), $general_settings );
 
 	update_option( 'bm_general_settings', $general_settings );

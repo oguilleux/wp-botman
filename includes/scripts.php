@@ -16,6 +16,10 @@ function bm_load_scripts() {
 	wp_register_script( 'bm-script', $js_dir . 'frontend' . $suffix . '.js', array( 'jquery' ), 0.5 );
 	wp_enqueue_script( 'bm-script' );
 
+    $overlay_settings = (array) get_option( 'bm_general_settings' );
+    $change_botlogo = $overlay_settings['change_botlogo'];
+    $change_userlogo = $overlay_settings['change_userlogo'];
+
 
     wp_localize_script( 'bm-script', 'bm_script_vars', apply_filters( 'bm_script_vars', array(
 			'messaging_platform' => apply_filters( 'myc_script_messaging_platform','default' ),
@@ -23,8 +27,10 @@ function bm_load_scripts() {
 					'internal_error' => __( 'An internal error occured', 'chatbot' ),
 					'input_unknown' => __( 'I\'m sorry I do not understand.', 'chatbot' )
 			),
-            'ajaxurl'=>admin_url('admin-ajax.php'),
+            'ajaxurl' => admin_url('admin-ajax.php'),
             'logo_url'=>WPBOTMAN_PLUGIN_URL.'assets/fonts/logo.png',
+            'botlogo' => $change_botlogo,
+            'userlogo'=>$change_userlogo,
 	) ) );
 
 }
