@@ -195,11 +195,15 @@
 	.myc-image-response img {
 		max-width: 100%;
 	}
-	.myc-content-overlay {
+	.bm-content-overlay {
 		min-width: 100%;
 		width: 100%;
 		max-height: 100%;
 		right: auto;
+		background-color: #fff;
+	}
+	.bm-content-overlay-header{
+		width: 95%;
 	}
 	.bm-content-overlay-container {
 		font-size: 100%;
@@ -214,12 +218,13 @@
 	}
 	.bm-content-overlay-container .bm-container #bm-conversation-area {
 		position: relative;
-		max-height: 80%;
+		max-height: 100%;
 	}
 	.bm-content-overlay-container .bm-container #bm-input-area {
+		min-width: 95%;
 		position: fixed;
 		bottom: 0;
-		width: 100%;
+		width: 95%;
 	}
 }
 
@@ -265,8 +270,8 @@
 
 @font-face {
 	font-family: 'bm-icons';
-	src:  url('../fonts/icons.eot?6tk1sz');
-	src:  url('../fonts/icons.eot?6tk1sz#iefix') format('embedded-opentype'),
+	/*src:  url('../fonts/icons.eot?6tk1sz');
+	src:  url('../fonts/icons.eot?6tk1sz#iefix') format('embedded-opentype'),*/
 	/*url('../fonts/icons.ttf?6tk1sz') format('truetype'),
 	url('../fonts/icons.woff?6tk1sz') format('woff'),*/
 	url('../fonts/icons.svg?6tk1sz#icomoon') format('svg');

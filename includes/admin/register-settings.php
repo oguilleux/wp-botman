@@ -94,7 +94,7 @@ function bm_register_settings() {
             'args' => array(
                 'option_name' 	=> 'bm_general_settings',
                 'setting_id' 	=> 'change_cue',
-                'label'     =>__( 'Just for test , if you do not have the url,please input the IP and host.If you have the url,the IP and host will be missed.', 'wp-botman' ),
+                'label'     =>__( 'The contents of the input box below are used only when testing. If you have entered Url, do not enter. If you need to test, please enter IP and Host.', 'wp-botman' ),
             )
         ),
         'change_ip' => array(

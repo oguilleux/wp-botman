@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wp-botman\n"
-"POT-Creation-Date: 2018-02-06 11:03+0800\n"
-"PO-Revision-Date: 2018-02-06 11:04+0800\n"
+"POT-Creation-Date: 2018-02-07 08:40+0800\n"
+"PO-Revision-Date: 2018-02-07 08:40+0800\n"
 "Last-Translator: zhaojing <zhaojing@e2info.com>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../includes/admin/admin-pages.php:7
-#: ../includes/admin/register-settings.php:132
+#: ../includes/admin/register-settings.php:141
 msgid "Botman"
 msgstr ""
 
@@ -57,10 +57,6 @@ msgstr "输入输入框提示信息"
 msgid "Enter input text..."
 msgstr "输入输入框提示信息..."
 
-#: ../includes/admin/register-settings.php:48
-msgid "Change the url or change the IP and Host."
-msgstr "更改url或者更改IP与Host。"
-
 #: ../includes/admin/register-settings.php:52
 msgid "Change Url"
 msgstr "更改url"
@@ -73,59 +69,67 @@ msgstr "输入你想要更改的url。"
 msgid "Enter the url you want to change..."
 msgstr "输入你想要更改的url..."
 
-#: ../includes/admin/register-settings.php:66
-msgid "Change IP"
-msgstr "更改IP"
-
-#: ../includes/admin/register-settings.php:73
-msgid "Enter the IP you want yo change."
-msgstr "输入你想要更改的IP。"
-
-#: ../includes/admin/register-settings.php:74
-msgid "Enter the IP you want yo change..."
-msgstr "输入你想要更改的IP..."
-
-#: ../includes/admin/register-settings.php:78
-msgid "Change Host"
-msgstr "更改Host"
-
-#: ../includes/admin/register-settings.php:85
-msgid "Enter the Host you want yo change."
-msgstr "输入你想要更改的Host。"
-
-#: ../includes/admin/register-settings.php:86
-msgid "Enter the Host you want yo change..."
-msgstr "输入你想要更改的Host..."
-
-#: ../includes/admin/register-settings.php:90
+#: ../includes/admin/register-settings.php:65
 msgid "Change Botman Head Image"
 msgstr "更改Botman头像"
 
-#: ../includes/admin/register-settings.php:99
+#: ../includes/admin/register-settings.php:74
 msgid "Change Botman Head Image."
 msgstr "更改Botman头像。"
 
-#: ../includes/admin/register-settings.php:103
+#: ../includes/admin/register-settings.php:78
 msgid "Change User Head Image"
 msgstr "更改用户头像"
 
-#: ../includes/admin/register-settings.php:112
+#: ../includes/admin/register-settings.php:87
 msgid "Change User Head Image."
 msgstr "更改用户头像。"
 
-#: ../includes/admin/register-settings.php:131
+#: ../includes/admin/register-settings.php:97
+msgid ""
+"The contents of the input box below are used only when testing. If you have "
+"entered Url, do not enter. If you need to test, please enter IP and Host."
+msgstr ""
+"下方输入框内容仅测试时使用，如果您已经输入了Url，请不要输入。如果需要测试，"
+"请输入IP和Host。"
+
+#: ../includes/admin/register-settings.php:101
+msgid "Change IP"
+msgstr "更改IP"
+
+#: ../includes/admin/register-settings.php:108
+msgid "Enter the IP you want yo change."
+msgstr "输入你想要更改的IP。"
+
+#: ../includes/admin/register-settings.php:109
+msgid "Enter the IP you want yo change..."
+msgstr "输入你想要更改的IP..."
+
+#: ../includes/admin/register-settings.php:113
+msgid "Change Host"
+msgstr "更改Host"
+
+#: ../includes/admin/register-settings.php:120
+msgid "Enter the Host you want yo change."
+msgstr "输入你想要更改的Host。"
+
+#: ../includes/admin/register-settings.php:121
+msgid "Enter the Host you want yo change..."
+msgstr "输入你想要更改的Host..."
+
+#: ../includes/admin/register-settings.php:140
 msgid "Ask something..."
 msgstr "请问些什么吧.."
 
-#: ../includes/admin/register-settings.php:134
+#: ../includes/admin/register-settings.php:143
 msgid "https://192.168.99.100/botman"
 msgstr ""
 
-#: ../includes/admin/register-settings.php:135
+#: ../includes/admin/register-settings.php:144
 msgid "Host: e2bot.localhost.com"
 msgstr ""
 
-#: ../includes/admin/register-settings.php:136
+#: ../includes/admin/register-settings.php:145
 msgid "wp-content/plugins/wp-botman/assets/fonts/logo.png"
 msgstr ""
 
@@ -144,6 +148,9 @@ msgstr ""
 #: ../includes/templates/chatbot-overlay.php:5
 msgid "Close"
 msgstr ""
+
+#~ msgid "Change the url or change the IP and Host."
+#~ msgstr "更改url或者更改IP与Host。"
 
 #~ msgid "Header Text"
 #~ msgstr "头部信息"
