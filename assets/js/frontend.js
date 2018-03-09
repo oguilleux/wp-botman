@@ -103,7 +103,7 @@ function getCookie(name)
 };
 
 function userid(){
-    if(document.cookie.indexOf('userid=')>0){
+    if(document.cookie.indexOf('userid=')>-1){
         //alert(1);
         var userid = getCookie("userid");
 
