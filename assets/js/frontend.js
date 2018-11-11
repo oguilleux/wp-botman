@@ -1,5 +1,5 @@
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function($) {
 	/*
 	 * When the user enters text in the text input text field and then the presses Enter key
 	 */
@@ -47,21 +47,45 @@ jQuery(document).ready(function() {
 
             $.post(bm_script_vars.ajaxurl,data,function (response) {
                 if(response){
+					var innerHTML = '';
                     // botsaid=response.replace(/\s/g,'');
-                    if(response=="nourl"){
-                        var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">No url is set.</div>";
+                    if(response === "nourl"){
+                        innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">No url is set.</div>";
                     }else{
                         var botsaid = eval("("+response+")");
-                        if(botsaid.messages[0].text){
-                            var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">"+ botsaid.messages[0].text + "</div>";
-                        }else{
-                            var innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">The Response is null.Please set the right url.</div>";
-                        }
+
+                        if(typeof botsaid.messages !== 'undefined' ){
+							if (botsaid.messages.length > 0) {
+								botsaid.messages.forEach(function(element) {
+									innerHTML += "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">"+ element.text + "</div>";
+
+									if(bm_script_vars.botlogo){
+										innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.botlogo+" /></div>";
+									}
+								});
+							} else {
+								innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">I'm sorry I don't understand what you're trying to say.</div>";
+
+								if(bm_script_vars.botlogo){
+									innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.botlogo+" /></div>";
+								}
+
+								innerHTML += "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">Try saying 'Hi'!</div>";
+
+								if(bm_script_vars.botlogo){
+									innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.botlogo+" /></div>";
+								}
+							}
+						} else {
+							innerHTML = "<div class=\"bm-conversation-bubble-container bm-conversation-bubble-container-response\"><div class=\"bm-conversation-bubble bm-conversation-response bm-is-active \">The Response is null.Please set the right url.</div>";
+
+							if(bm_script_vars.botlogo){
+								innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.botlogo+" /></div>";
+							}
+						}
+
                     }
 
-                    if(bm_script_vars.botlogo){
-                        innerHTML += "<img class=\"bm-chatLog-avatar\" src="+bm_script_vars.botlogo+" /></div>";
-                    }
                     jQuery("#bm-conversation-area").append(innerHTML);
                     jQuery("#bm-conversation-area").scrollTop(jQuery("#bm-conversation-area").prop("scrollHeight"));
                 }

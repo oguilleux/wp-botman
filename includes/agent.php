@@ -23,19 +23,19 @@ function bm_send()
         $url=$change_url;
         curl_setopt($curl, CURLOPT_URL, $url);
     }elseif(!$change_url&&$change_ip&&$change_host){
-            $url=$change_ip;
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, [$change_host]);
-        }elseif(!$change_url&&!$change_ip){
-            echo "nourl";
-            die();
-        }
+        $url=$change_ip;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, [$change_host]);
+    }elseif(!$change_url&&!$change_ip){
+        echo "nourl";
+        die();
+    }
 
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HEADER, 0);//direct to brower
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 0);//direct to brower
     curl_setopt($curl, CURLOPT_POST, 1);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); // https?µá ÉÔ????ÏÂhosts
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); // https?ï¿½ï¿½ ï¿½ï¿½????ï¿½ï¿½hosts
     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
 
     $post_data = array(
@@ -46,7 +46,7 @@ function bm_send()
 
     curl_setopt($curl,CURLOPT_POSTFIELDS, $post_data);
 
-    $data=curl_exec($curl);
+    $data = curl_exec($curl);
 
     if (curl_errno($curl)) {
         echo  'Curl error: ' . curl_error($curl);

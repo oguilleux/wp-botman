@@ -88,7 +88,8 @@ function bm_register_settings() {
             )
         ),
         'change_cue' => array(
-            'callback' 	=> 'bm_field_label',
+	        'title' 	=> __( 'Change Cue', 'wp-botman' ),
+	        'callback' 	=> 'bm_field_label',
             'page' 		=> 'botman&tab=bm_general_settings',
             'section' 	=> 'bm_section_general',
             'args' => array(

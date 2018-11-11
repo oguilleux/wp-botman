@@ -29,8 +29,6 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
-
 define("WPBOTMAN_PLUGIN_DIR", __file__);
 define("WPBOTMAN_PLUGIN_BASE", dirname(__file__));
 define("WPBOTMAN_PLUGIN_URL", plugin_dir_url(WPBOTMAN_PLUGIN_DIR));
