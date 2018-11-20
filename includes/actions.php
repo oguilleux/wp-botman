@@ -1,6 +1,5 @@
 <?php
 
-
 // Exit if accessed directly
 if (! defined ( 'ABSPATH' ))
 	exit ();
@@ -24,7 +23,3 @@ function bm_content_overlay() {
 
 }
 add_action( 'wp_footer', 'bm_content_overlay');
-
-
-
-
