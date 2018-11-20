@@ -13,7 +13,7 @@ function bm_load_scripts() {
 	// Use minified libraries if SCRIPT_DEBUG is turned off
 	$suffix = ''; //( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-	wp_register_script( 'bm-script', $js_dir . 'frontend' . $suffix . '.js', array( 'jquery' ), 0.5 );
+	wp_register_script( 'bm-script', $js_dir . 'frontend' . $suffix . '.js', array( 'jquery' ), 0.5, true );
 	wp_enqueue_script( 'bm-script' );
 
     $overlay_settings = (array) get_option( 'bm_general_settings' );
@@ -90,8 +90,7 @@ function bm_load_admin_scripts() {
     // Use minified libraries if SCRIPT_DEBUG is turned off
     $suffix = ''; //( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-    wp_register_script( 'bm-admin-script', $js_dir . 'admin' . $suffix . '.js', array( 'jquery' ));
-    wp_enqueue_script( 'bm-admin-script' );
+	wp_enqueue_script( 'bm-admin-script', $js_dir . 'admin' . $suffix . '.js', array( 'jquery' ), NULL, true);
 }
 add_action( 'admin_enqueue_scripts', 'bm_load_admin_scripts' );
 
